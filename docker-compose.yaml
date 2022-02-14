@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: devops/Dockerfile
+    ports:
+      - "8022:80"
+    volumes:
+      - ".:/usr/src/app"
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:8
+    ports:
+      - "33062:3306"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=my-secret-pw"

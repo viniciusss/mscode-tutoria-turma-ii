@@ -1,0 +1,15 @@
+#!/bin/bash
+
+docker build -t lojassimonetti/mscode-turma-ii:latest -f devops/Dockerfile .
+
+if [[ 0 -ne $? ]]; then
+  echo "----- Aconteceu um erro no build, verifique o log!!"
+  exit 1
+fi
+
+docker push lojassimonetti/mscode-turma-ii:latest
+
+if [[ 0 -ne $? ]]; then
+  echo "----- Aconteceu um erro no push, verifique o log e suas permissões!!"
+  exit 1
+fi
